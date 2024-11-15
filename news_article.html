@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Article</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="IMAGES/BentleyEdgeTransparent%20copy.png" type="image/x-icon">
+  <style>
+    .hero-image {
+      background-image: url('IMAGES/grid/BEdgexBlockchainAss.png');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+      color: white;
+    }
+    /* Overlay title and subtitle */
+    .hero-text {
+      position: absolute;
+      bottom: 20%;
+      left: 5%;
+      width: 90%;
+      max-width: 800px;
+    }
+    /* Source text style */
+    .source-text {
+      position: absolute;
+      bottom: 5%;
+      left: 5%;
+      color: #dcdcdc;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-container"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById("header-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading header:", error));
+  });
+</script>
+
+<div class="hero-image">
+  <div class="hero-text p-3" style="color: white; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+    <h1 class="display-4">The Power of Collaboration: Expanding Horizons Through Shared Vision</h1>
+    <p class="lead">“If you want to go fast, go alone; if you want to go far, go together.”</p>
+    <p class="lead">By Francisco Cunha | Thu Nov 14</p>
+  </div>
+  <p class="source-text">Image Source: BentleyEdge.</p>
+</div>
+
+<!-- Article Content -->
+<div class="container my-5">
+  <article>
+    <p>Collaboration isn’t just a strategy; it’s a philosophy, a bridge to reach beyond the limits of individual effort. In today’s fast-paced landscape, where access to knowledge and innovation lies just a click away, working together has become a powerful vehicle for extending reach, resources, and ideas.</p>
+
+    <p>Consider how legendary collaborations—like Supreme’s partnerships with brands from Levi’s to Louis Vuitton—have not only reshaped streetwear but revitalized its image with a fresh, rebellious edge. These partnerships are more than mere business arrangements; they are statements, cultural moments that bring value to both sides and spark intrigue and relevance with their audiences.</p>
+
+    <p>In the same spirit, Bentley University is embracing the idea that knowledge and impact multiply through partnerships. By bringing together minds across diverse fields, each collaboration becomes an opportunity to expand access to insights and share invaluable perspectives with a larger audience. It’s not about any single project but the shared growth and the fresh potential that arises when unique viewpoints collide.</p>
+  </article>
+  <div class="my-4">
+    <img src="IMAGES/1528113928888.jpg" class="img-fluid" alt="Secondary Image">
+    <p class="text-muted text-center">Puma x Mac Collaboration - www.self.com</p>
+  </div>
+  <article>
+    <h2>Fresh Perspectives Fuel Relevance</h2>
+    <p>Staying relevant in a world where trends evolve overnight requires not just keeping up but staying ahead of the curve. Collaborations have the unique ability to breathe new life into content, pushing boundaries and infusing traditional work with innovative angles. This synergy generates insights that are richer and more expansive than any one group could offer alone. As we’ve seen from examples like Louis Vuitton’s partnership with Yayoi Kusama, collaborations can transform, reposition, and invigorate brand identity and presence.</p>
+    <p>For Bentley Edge, every collaboration is a path to provide students and readers with access to real-world insights that wouldn’t otherwise be visible. Our work seeks to capture the experience and knowledge shared in university club meetings, workshops, and discussions, packaging them into valuable resources for a global audience. It’s a mission to spotlight the authentic expertise cultivated within Bentley’s community—expertise that showcases Bentley not only as an academic institution but as a creator of actionable, world-class knowledge.</p>
+  </article>
+  <article>
+    <h2>A Sustainable Path to Growth</h2>
+    <p>While collaborations are often seen as short-lived events, their potential for longevity lies in their ability to create lasting value. Brands like MAC have demonstrated this, maintaining relevance by continuously collaborating in ways that reflect their core identity while still breaking new ground—whether through their Disney Villains collection or a bold sneaker-lipstick crossover with Puma.</p>
+    <p>At Bentley Edge, our collaborations are aimed at building a sustainable foundation for growth, measured not by transient trends but by the ongoing benefit these alliances offer. Through these partnerships, we are assembling a vast database of insights and analytics, helping student organizations identify what resonates most with readers, enabling them to focus on what truly impacts the Bentley community.</p>
+  </article>
+  <article>
+    <h2>Together, We Go Further</h2>
+    <p>In the interconnected world of Bentley Edge, collaboration isn’t just about shared work; it’s about shared purpose and vision. It’s about fostering a space where every participant brings their strengths, helping to build a collective resource that goes beyond the immediate goals of any single organization. By working with groups like the Blockchain Association, we’re opening the door to a flow of ideas, from blockchain to sustainable investment, that enhances our knowledge base and supports the unique value Bentley Edge brings to our readers.</p>
+    <p>When you cultivate partnerships based on shared values and vision, you gain more than collaboration—you gain momentum, reach, and, most importantly, purpose. And that is why, as Bentley Edge moves forward, we are committed to collaboration not just as a tool for success but as a foundational element in our journey to make Bentley’s potential accessible to the world.</p>
+  </article>
+  <footer class="my-4">
+    <p><strong>Share this article:</strong></p>
+    <div>
+      <a href="#" class="btn btn-primary btn-sm">Facebook</a>
+      <a href="#" class="btn btn-info btn-sm">Twitter</a>
+      <a href="#" class="btn btn-secondary btn-sm">LinkedIn</a>
+    </div>
+  </footer>
+</div>
+
+
+<div id="footer-container"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById("footer-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading footer:", error));
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
