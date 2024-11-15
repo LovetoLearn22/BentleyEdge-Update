@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BentleyEdge</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="icon" href="IMAGES/BentleyEdgeTransparent%20copy.png" type="image/x-icon">
+  <style>
+    .hero-section {
+      background-color: #004080;
+      color: white;
+      padding: 80px 20px;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hero-image {
+      max-width: 50%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .hero-text {
+      max-width: 80%;
+    }
+
+    /* Adjust for larger screens */
+    @media (min-width: 768px) {
+      .hero-section {
+        flex-direction: row;
+        text-align: left;
+      }
+      .hero-image {
+        max-width: 40%;
+        margin-bottom: 0;
+      }
+      .hero-text {
+        max-width: 50%;
+      }
+    }
+    .content-section {
+      padding: 50px 20px;
+      display: flex;
+      align-items: center;
+    }
+    .content-section img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .numbers-section {
+      background-color: #000;
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+    }
+    .number-box {
+      background-color: #333;
+      color: #004080;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-container"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById("header-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading header:", error));
+  });
+</script>
+
+<body>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-text">
+    <h1 class="display-4">Explore Insights and Opportunities with BentleyEdge.</h1>
+    <p>BentleyEdge is your portal to knowledge, networking, and real-world insights from Bentley University’s vibrant community. Dive into content that inspires, informs, and connects you to a world of innovation and expertise.</p>
+  </div>
+  <img src="IMAGES/Falcon%20hero.png" alt="BentleyEdge Logo" class="hero-image">
+</section>
+
+<!-- How Does BentleyEdge Work Section -->
+<section class="content-section container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="your-youtube-video-url" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>How Does BentleyEdge Work?</h2>
+      <p>BentleyEdge partners with student-led groups, faculty, and alumni across Bentley University to capture and share their valuable content, events, meetings, and insights. We transform this wealth of knowledge into accessible articles, videos, forums, discussions, audios, and podcasts. Our mission is to translate and publish Bentley’s unique perspectives and achievements to the world, making education equitable and accessible for everyone.</p>
+      <p>BentleyEdge believes in providing a glimpse into Bentley’s vibrant academic and extracurricular ecosystem, offering those outside our community the opportunity to learn and grow with us. Through BentleyEdge, you can experience the pulse of Bentley University, engage with real-world insights, and be part of our journey towards knowledge and innovation.</p>
+      <a href="#" class="btn btn-primary">Explore BentleyEdge</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- BentleyEdge by the Numbers Section -->
+<section class="numbers-section">
+  <h2>BentleyEdge by the Numbers</h2>
+  <p>BentleyEdge brings together a diverse community dedicated to knowledge-sharing and professional growth.</p>
+  <p><small>As of September, 2024</small></p>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-2 number-box">
+        <h3>50K+</h3>
+        <p>Monthly Active Users</p>
+      </div>
+      <div class="col-md-2 number-box">
+        <h3>200K+</h3>
+        <p>Articles and Posts</p>
+      </div>
+      <div class="col-md-2 number-box">
+        <h3>5K+</h3>
+        <p>Active Communities</p>
+      </div>
+      <div class="col-md-2 number-box">
+        <h3>1M+</h3>
+        <p>Comments & Interactions</p>
+      </div>
+    </div>
+    <a href="#" class="btn btn-primary mt-3">BentleyEdge Press</a>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById("footer-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading footer:", error));
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
