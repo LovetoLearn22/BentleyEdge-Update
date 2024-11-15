@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discussion Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="IMAGES/BentleyEdgeTransparent%20copy.png" type="image/x-icon">
+    <style>
+        /* Filter Bar */
+        .filter-bar {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        /* Post Item Styling */
+        .post-item {
+            display: flex;
+            align-items: center;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s;
+        }
+
+        .post-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .post-thumbnail {
+            width: 80px;
+            height: 60px;
+            border-radius: 8px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .post-content h6 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .post-content p {
+            color: #6c757d;
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        .post-stats {
+            font-size: 0.85rem;
+            color: #495057;
+        }
+
+        /* Sidebar Styling */
+        .community-sidebar {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .community-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .community-item:last-child {
+            border-bottom: none;
+        }
+
+        .community-item h6 {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .small-text {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        /* Hide scrollbar for WebKit browsers */
+        .scrollable-posts::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Optional scrollbar styling for other browsers */
+        .scrollable-posts {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        /* Main Container */
+        .container {
+            margin-top: 20px;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-section {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .sidebar-section h5 {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        /* Individual Community and People Item */
+        .community-item, .people-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .community-item:last-child, .people-item:last-child {
+            border-bottom: none;
+        }
+
+        .community-item img, .people-item img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+        }
+
+        .community-details, .people-details {
+            font-size: 0.9rem;
+        }
+
+        .community-details p, .people-details p {
+            margin: 0;
+            color: #6c757d;
+        }
+
+        .small-text {
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        /* Sticky Sidebar */
+        .sticky-sidebar {
+            position: sticky;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="header-container"></div>
+<div id="navbar-container"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("header-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading header:", error));
+    });
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("nav-bar.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("navbar-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading navbar:", error));
+    });
+</script>
+<div class="container mt-4">
+    <!-- Filter Bar -->
+    <div class="filter-bar d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <!-- Dropdowns for Filters -->
+        <div class="d-flex">
+            <select class="custom-select custom-select-sm mr-2" aria-label="Filter by Relevance">
+                <option selected>Relevance</option>
+                <option value="1">Hot</option>
+                <option value="2">Top</option>
+                <option value="3">New</option>
+                <option value="4">Comment count</option>
+            </select>
+            <select class="custom-select custom-select-sm" aria-label="Filter by Date">
+                <option selected>All time</option>
+                <option value="1">Past year</option>
+                <option value="2">Past month</option>
+                <option value="3">Past week</option>
+                <option value="4">Today</option>
+                <option value="5">Past hour</option>
+            </select>
+        </div>
+        <!-- Content Type Buttons (Stack on mobile) -->
+        <div class="btn-group mb-2 mb-md-0">
+            <button class="btn btn-outline-secondary btn-sm active">Posts</button>
+            <button class="btn btn-outline-secondary btn-sm">Communities</button>
+            <button class="btn btn-outline-secondary btn-sm">Comments</button>
+            <button class="btn btn-outline-secondary btn-sm">Media</button>
+            <button class="btn btn-outline-secondary btn-sm">People</button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <!-- Main Content Section -->
+        <div class="col-md-8">
+            <div class="post-item">
+                <img src="IMAGES/Welcome_to_BentleyEdge%20copy.png" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/RealEstateInvesting · 6mo ago</h6>
+                    <p>New trends in real estate investing: The rise of short-term rentals and REITs.</p>
+                    <small class="post-stats">3.8K votes · 900 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/PropertyTech · 2mo ago</h6>
+                    <p>How technology is reshaping the commercial real estate industry.</p>
+                    <small class="post-stats">1.5K votes · 450 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/SustainableRealty · 5mo ago</h6>
+                    <p>The impact of sustainable building practices on property value.</p>
+                    <small class="post-stats">980 votes · 360 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/HousingMarket · 1y ago</h6>
+                    <p>Analyzing housing market fluctuations and investment opportunities.</p>
+                    <small class="post-stats">4.1K votes · 1.1K comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/UrbanDevelopment · 3d ago</h6>
+                    <p>The role of urban development in enhancing community life and property values.</p>
+                    <small class="post-stats">2.2K votes · 780 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/SustainableRealty · 5mo ago</h6>
+                    <p>The impact of sustainable building practices on property value.</p>
+                    <small class="post-stats">980 votes · 360 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/HousingMarket · 1y ago</h6>
+                    <p>Analyzing housing market fluctuations and investment opportunities.</p>
+                    <small class="post-stats">4.1K votes · 1.1K comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/UrbanDevelopment · 3d ago</h6>
+                    <p>The role of urban development in enhancing community life and property values.</p>
+                    <small class="post-stats">2.2K votes · 780 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/SustainableRealty · 5mo ago</h6>
+                    <p>The impact of sustainable building practices on property value.</p>
+                    <small class="post-stats">980 votes · 360 comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/HousingMarket · 1y ago</h6>
+                    <p>Analyzing housing market fluctuations and investment opportunities.</p>
+                    <small class="post-stats">4.1K votes · 1.1K comments</small>
+                </div>
+            </div>
+            <div class="post-item">
+                <img src="https://via.placeholder.com/80x60" alt="Post Thumbnail" class="post-thumbnail">
+                <div class="post-content">
+                    <h6>r/UrbanDevelopment · 3d ago</h6>
+                    <p>The role of urban development in enhancing community life and property values.</p>
+                    <small class="post-stats">2.2K votes · 780 comments</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 sticky-sidebar">
+            <!-- Communities Section -->
+            <div class="sidebar-section">
+                <h5>Communities</h5>
+                <div class="community-item">
+                    <img src="https://via.placeholder.com/32" alt="Community Icon">
+                    <div class="community-details">
+                        <strong>r/RealEstate</strong>
+                        <p>2M members · 1.1K online</p>
+                    </div>
+                </div>
+                <div class="community-item">
+                    <img src="https://via.placeholder.com/32" alt="Community Icon">
+                    <div class="community-details">
+                        <strong>r/TorontoRealEstate</strong>
+                        <p>103K members · 63 online</p>
+                    </div>
+                </div>
+                <div class="community-item">
+                    <img src="https://via.placeholder.com/32" alt="Community Icon">
+                    <div class="community-details">
+                        <strong>r/CommercialRealEstate</strong>
+                        <p>95K members · 29 online</p>
+                    </div>
+                </div>
+                <div class="community-item">
+                    <img src="https://via.placeholder.com/32" alt="Community Icon">
+                    <div class="community-details">
+                        <strong>r/realestateinvesting</strong>
+                        <p>1.9M members · 1K online</p>
+                    </div>
+                </div>
+                <div class="community-item">
+                    <img src="https://via.placeholder.com/32" alt="Community Icon">
+                    <div class="community-details">
+                        <strong>r/realtors</strong>
+                        <p>131K members · 46 online</p>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-link small-text">See more communities</a>
+            </div>
+
+            <!-- People Section -->
+            <div class="sidebar-section">
+                <h5>People</h5>
+                <div class="people-item">
+                    <img src="https://via.placeholder.com/32" alt="User Icon">
+                    <div class="people-details">
+                        <strong>u/RealEstate</strong>
+                        <p class="small-text">1 karma</p>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <img src="https://via.placeholder.com/32" alt="User Icon">
+                    <div class="people-details">
+                        <strong>u/realestateross98</strong>
+                        <p class="small-text">45K karma</p>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <img src="https://via.placeholder.com/32" alt="User Icon">
+                    <div class="people-details">
+                        <strong>u/realestatetrading</strong>
+                        <p class="small-text">67 karma</p>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <img src="https://via.placeholder.com/32" alt="User Icon">
+                    <div class="people-details">
+                        <strong>u/realestate_reptile</strong>
+                        <p class="small-text">12K karma</p>
+                    </div>
+                </div>
+                <div class="people-item">
+                    <img src="https://via.placeholder.com/32" alt="User Icon">
+                    <div class="people-details">
+                        <strong>u/waltlovesyou</strong>
+                        <p class="small-text">11K karma</p>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-link small-text">See more people</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer-container"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch("footer.html")
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("footer-container").innerHTML = data;
+            })
+            .catch(error => console.error("Error loading footer:", error));
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
